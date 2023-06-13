@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus TravelExp</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+ <!-- en este codigo funciona al 80% hay que arreglarlo ponerle logica y podria servir  -->
+<body>
+    <div class="container">
+        <h1>Gestión de tiquetes</h1>
+        <form id="ticketForm">
+            <div class="form-group">
+                <label for="ticketId">ID del tiquete:</label>
+                <input type="text" class="form-control" id="ticketId" required>
+            </div>
+            <div class="form-group">
+                <label for="clientId">ID del cliente:</label>
+                <input type="text" class="form-control" id="clientId" required>
+            </div>
+            <div class="form-group">
+                <label for="routeId">ID de la ruta:</label>
+                <input type="text" class="form-control" id="routeId" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Comprar tiquete</button>
+        </form>
+
+        <h1>Registro de puntos de fidelización</h1>
+        <form id="loyaltyForm">
+            <div class="form-group">
+                <label for="loyaltyId">ID de la transacción:</label>
+                <input type="text" class="form-control" id="loyaltyId" required>
+            </div>
+            <div class="form-group">
+                <label for="clientId">ID del cliente:</label>
+                <input type="text" class="form-control" id="loyaltyClientId" required>
+            </div>
+            <div class="form-group">
+                <label for="points">Puntos ganados:</label>
+                <input type="number" class="form-control" id="points" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar puntos</button>
+        </form>
+
+        <h1>Tiquetes comprados</h1>
+        <table id="ticketsTable" class="table">
+            <thead>
+                <tr>
+                    <th>ID del tiquete</th>
+                    <th>ID del cliente</th>
+                    <th>ID de la ruta</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <h1>Registro de puntos de fidelización</h1>
+        <table id="loyaltyTable" class="table">
+            <thead>
+                <tr>
+                    <th>ID de la transacción</th>
+                    <th>ID del cliente</th>
+                    <th>Puntos ganados</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <h1>Gestión de clientes</h1>
+        <form id="clientForm">
+            <div class="form-group">
+                <label for="id">Número de identificación:</label>
+                <input type="text" class="form-control" id="id" required>
+            </div>
+            <div class="form-group">
+                <label for="firstName">Nombres:</label>
+                <input type="text" class="form-control" id="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Apellidos:</label>
+                <input type="text" class="form-control" id="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Teléfono:</label>
+                <input type="text" class="form-control" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="birthdate">Fecha de nacimiento:</label>
+                <input type="date" class="form-control" id="birthdate" required>
+            </div>
+            <div class="form-group">
+                <label for="nationality">Nacionalidad:</label>
+                <input type="text" class="form-control" id="nationality" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar cliente</button>
+        </form>
+
+        <h1>Gestión de rutas aéreas</h1>
+        <form id="routeForm">
+            <div class="form-group">
+                <label for="routeName">Nombre de la ruta:</label>
+                <input type="text" class="form-control" id="routeName" required>
+            </div>
+            <div class="form-group">
+                <label for="ticketValue">Valor del tiquete:</label>
+                <input type="number" class="form-control" id="ticketValue" required>
+            </div>
+            <div class="form-group">
+                <label for="origin">Ciudad origen:</label>
+                <input type="text" class="form-control" id="origin" required>
+            </div>
+            <div class="form-group">
+                <label for="destination">Ciudad destino:</label>
+                <input type="text" class="form-control" id="destination" required>
+            </div>
+            <div class="form-group">
+                <label for="loyaltyPoints">Puntos para fidelización:</label>
+                <input type="number" class="form-control" id="loyaltyPoints" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar ruta</button>
+        </form>
+
+        <h1>Clientes registrados</h1>
+        <table id="clientsTable" class="table">
+            <thead>
+                <tr>
+                    <th>Número de identificación</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Teléfono</th>
+                    <th>Correo electrónico</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Nacionalidad</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <h1>Rutas aéreas registradas</h1>
+        <table id="routesTable" class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre de la ruta</th>
+                    <th>Valor del tiquete</th>
+                    <th>Ciudad origen</th>
+                    <th>Ciudad destino</th>
+                    <th>Puntos para fidelización</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script>
+        const tickets = [];
+        const loyaltyTransactions = [];
+        const clients = [];
+        const routes = [];
+
+        $('#ticketForm').submit(function (event) {
+            event.preventDefault();
+            const ticket = {
+                ticketId: $('#ticketId').val(),
+                clientId: $('#clientId').val(),
+                routeId: $('#routeId').val()
+            };
+            tickets.push(ticket);
+            populateTicketsTable();
+            $(this).trigger('reset');
+        });
+
+        $('#loyaltyForm').submit(function (event) {
+            event.preventDefault();
+            const loyaltyTransaction = {
+                loyaltyId: $('#loyaltyId').val(),
+                clientId: $('#loyaltyClientId').val(),
+                points: $('#points').val()
+            };
+            loyaltyTransactions.push(loyaltyTransaction);
+            populateLoyaltyTable();
+            $(this).trigger('reset');
+        });
+
+        $('#clientForm').submit(function (event) {
+            event.preventDefault();
+            const client = {
+                id: $('#id').val(),
+                firstName: $('#firstName').val(),
+                lastName: $('#lastName').val(),
+                phone: $('#phone').val(),
+                email: $('#email').val(),
+                birthdate: $('#birthdate').val(),
+                nationality: $('#nationality').val()
+            };
+            clients.push(client);
+            populateClientsTable();
+            $(this).trigger('reset');
+        });
+
+        $('#routeForm').submit(function (event) {
+            event.preventDefault();
+            const route = {
+                id: routes.length + 1,
+                name: $('#routeName').val(),
+                ticketValue: $('#ticketValue').val(),
+                origin: $('#origin').val(),
+                destination: $('#destination').val(),
+                loyaltyPoints: $('#loyaltyPoints').val()
+            };
+            routes.push(route);
+            populateRoutesTable();
+            $(this).trigger('reset');
+        });
+
+        function populateTicketsTable() {
+            $('#ticketsTable tbody').empty();
+            tickets.forEach(ticket => {
+                const ticketRow = `<tr><td>${ticket.ticketId}</td><td>${ticket.clientId}</td><td>${ticket.routeId}</td></tr>`;
+                $('#ticketsTable tbody').append(ticketRow);
+            });
+        }
+
+        function populateLoyaltyTable() {
+            $('#loyaltyTable tbody').empty();
+            loyaltyTransactions.forEach(transaction => {
+                const loyaltyRow = `<tr><td>${transaction.loyaltyId}</td><td>${transaction.clientId}</td><td>${transaction.points}</td></tr>`;
+                $('#loyaltyTable tbody').append(loyaltyRow);
+            });
+        }
+
+        function populateClientsTable() {
+            $('#clientsTable tbody').empty();
+            clients.forEach(client => {
+                const clientRow = `<tr><td>${client.id}</td><td>${client.firstName}</td><td>${client.lastName}</td><td>${client.phone}</td><td>${client.email}</td><td>${client.birthdate}</td><td>${client.nationality}</td></tr>`;
+                $('#clientsTable tbody').append(clientRow);
+            });
+        }
+
+        function populateRoutesTable() {
+            $('#routesTable tbody').empty();
+            routes.forEach(route => {
+                const routeRow = `<tr><td>${route.id}</td><td>${route.name}</td><td>${route.ticketValue}</td><td>${route.origin}</td><td>${route.destination}</td><td>${route.loyaltyPoints}</td></tr>`;
+                $('#routesTable tbody').append(routeRow);
+            });
+        }
+    </script>
+</body>
+
+</html>
+
+ <!-- funciona el tiquete y puntos falta logica js -->
+
+<!-- <!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus TravelExp</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Gestión de tiquetes</h1>
+        <form id="ticketForm">
+            <div class="form-group">
+                <label for="ticketId">ID del tiquete:</label>
+                <input type="text" class="form-control" id="ticketId" required>
+            </div>
+            <div class="form-group">
+                <label for="clientId">ID del cliente:</label>
+                <input type="text" class="form-control" id="clientId" required>
+            </div>
+            <div class="form-group">
+                <label for="routeId">ID de la ruta:</label>
+                <input type="text" class="form-control" id="routeId" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Comprar tiquete</button>
+        </form>
+
+        <h1>Registro de puntos de fidelización</h1>
+        <form id="loyaltyForm">
+            <div class="form-group">
+                <label for="loyaltyId">ID de la transacción:</label>
+                <input type="text" class="form-control" id="loyaltyId" required>
+            </div>
+            <div class="form-group">
+                <label for="clientId">ID del cliente:</label>
+                <input type="text" class="form-control" id="loyaltyClientId" required>
+            </div>
+            <div class="form-group">
+                <label for="points">Puntos ganados:</label>
+                <input type="number" class="form-control" id="points" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar puntos</button>
+        </form>
+
+        <h1>Tiquetes comprados</h1>
+        <table id="ticketsTable" class="table">
+            <thead>
+                <tr>
+                    <th>ID del tiquete</th>
+                    <th>ID del cliente</th>
+                    <th>ID de la ruta</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <h1>Registro de puntos de fidelización</h1>
+        <table id="loyaltyTable" class="table">
+            <thead>
+                <tr>
+                    <th>ID de la transacción</th>
+                    <th>ID del cliente</th>
+                    <th>Puntos ganados</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script>
+        const tickets = [];
+        const loyaltyTransactions = [];
+
+        $('#ticketForm').submit(function (event) {
+            event.preventDefault();
+            const ticket = {
+                ticketId: $('#ticketId').val(),
+                clientId: $('#clientId').val(),
+                routeId: $('#routeId').val()
+            };
+            tickets.push(ticket);
+            populateTicketsTable();
+            $(this).trigger('reset');
+        });
+
+        $('#loyaltyForm').submit(function (event) {
+            event.preventDefault();
+            const loyaltyTransaction = {
+                loyaltyId: $('#loyaltyId').val(),
+                clientId: $('#loyaltyClientId').val(),
+                points: $('#points').val()
+            };
+            loyaltyTransactions.push(loyaltyTransaction);
+            populateLoyaltyTable();
+            $(this).trigger('reset');
+        });
+
+        function populateTicketsTable() {
+            $('#ticketsTable tbody').empty();
+            tickets.forEach(ticket => {
+                const ticketRow = `<tr><td>${ticket.ticketId}</td><td>${ticket.clientId}</td><td>${ticket.routeId}</td></tr>`;
+                $('#ticketsTable tbody').append(ticketRow);
+            });
+        }
+
+        function populateLoyaltyTable() {
+            $('#loyaltyTable tbody').empty();
+            loyaltyTransactions.forEach(transaction => {
+                const loyaltyRow = `<tr><td>${transaction.loyaltyId}</td><td>${transaction.clientId}</td><td>${transaction.points}</td></tr>`;
+                $('#loyaltyTable tbody').append(loyaltyRow);
+            });
+        }
+    </script>
+</body>
+
+</html>
+
+
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- en este falta tiquetes y puntos logica buena  -->
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus TravelExp</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Gestión de clientes</h1>
+        <form id="clientForm">
+            <div class="form-group">
+                <label for="id">Número de identificación:</label>
+                <input type="text" class="form-control" id="id" required>
+            </div>
+            <div class="form-group">
+                <label for="firstName">Nombres:</label>
+                <input type="text" class="form-control" id="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Apellidos:</label>
+                <input type="text" class="form-control" id="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Teléfono:</label>
+                <input type="text" class="form-control" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="birthdate">Fecha de nacimiento:</label>
+                <input type="date" class="form-control" id="birthdate" required>
+            </div>
+            <div class="form-group">
+                <label for="nationality">Nacionalidad:</label>
+                <input type="text" class="form-control" id="nationality" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar cliente</button>
+        </form>
+
+        <h1>Gestión de rutas aéreas</h1>
+        <form id="routeForm">
+            <div class="form-group">
+                <label for="routeName">Nombre de la ruta:</label>
+                <input type="text" class="form-control" id="routeName" required>
+            </div>
+            <div class="form-group">
+                <label for="ticketValue">Valor del tiquete:</label>
+                <input type="number" class="form-control" id="ticketValue" required>
+            </div>
+            <div class="form-group">
+                <label for="origin">Ciudad origen:</label>
+                <input type="text" class="form-control" id="origin" required>
+            </div>
+            <div class="form-group">
+                <label for="destination">Ciudad destino:</label>
+                <input type="text" class="form-control" id="destination" required>
+            </div>
+            <div class="form-group">
+                <label for="loyaltyPoints">Puntos para fidelización:</label>
+                <input type="number" class="form-control" id="loyaltyPoints" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar ruta</button>
+        </form>
+
+        <h1>Clientes registrados</h1>
+        <table id="clientsTable" class="table">
+            <thead>
+                <tr>
+                    <th>Número de identificación</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Teléfono</th>
+                    <th>Correo electrónico</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Nacionalidad</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <h1>Rutas aéreas registradas</h1>
+        <table id="routesTable" class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre de la ruta</th>
+                    <th>Valor del tiquete</th>
+                    <th>Ciudad origen</th>
+                    <th>Ciudad destino</th>
+                    <th>Puntos para fidelización</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script>
+        const clients = [];
+        const routes = [];
+
+        $('#clientForm').submit(function (event) {
+            event.preventDefault();
+            const client = {
+                id: $('#id').val(),
+                firstName: $('#firstName').val(),
+                lastName: $('#lastName').val(),
+                phone: $('#phone').val(),
+                email: $('#email').val(),
+                birthdate: $('#birthdate').val(),
+                nationality: $('#nationality').val()
+            };
+            clients.push(client);
+            populateClientsTable();
+            $(this).trigger('reset');
+        });
+
+        $('#routeForm').submit(function (event) {
+            event.preventDefault();
+            const route = {
+                id: routes.length + 1,
+                name: $('#routeName').val(),
+                ticketValue: $('#ticketValue').val(),
+                origin: $('#origin').val(),
+                destination: $('#destination').val(),
+                loyaltyPoints: $('#loyaltyPoints').val()
+            };
+            routes.push(route);
+            populateRoutesTable();
+            $(this).trigger('reset');
+        });
+
+        function populateClientsTable() {
+            $('#clientsTable tbody').empty();
+            clients.forEach(client => {
+                const clientRow = `<tr><td>${client.id}</td><td>${client.firstName}</td><td>${client.lastName}</td><td>${client.phone}</td><td>${client.email}</td><td>${client.birthdate}</td><td>${client.nationality}</td></tr>`;
+                $('#clientsTable tbody').append(clientRow);
+            });
+        }
+
+        function populateRoutesTable() {
+            $('#routesTable tbody').empty();
+            routes.forEach(route => {
+                const routeRow = `<tr><td>${route.id}</td><td>${route.name}</td><td>${route.ticketValue}</td><td>${route.origin}</td><td>${route.destination}</td><td>${route.loyaltyPoints}</td></tr>`;
+                $('#routesTable tbody').append(routeRow);
+            });
+        }
+    </script>
+</body>
+
+</html> -->
